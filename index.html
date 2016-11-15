@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Connect</title>
+        <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+        <link rel="stylesheet" href="app.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="manifest" href="manifest.json">
+    </head>
+    <body layout="column" ng-app="ConnectApp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <md-button  ng-controller="MainNavController as mnc" hide-gt-sm ng-click="mnc.toggleMainNav()" aria-label="menu" ng-show="mnc.authService.isUserAuthenticated()">
+                    <md-icon aria-label="Menu" class="material-icons">menu</md-icon>
+                </md-button>
+                <h2>
+                    <span>Connect {{mnc}}</span>
+                </h2>
+                <span flex></span>
+                <div  ng-controller="MenuController as mc">
+                    <md-button class="md-icon-button" aria-label="Favorite" ng-repeat="menuOpt in mc.menu.options">
+                        <md-icon aria-label="{{menuOpt.ariaLabel}}" class="material-icons" ng-click="mc.onMenuItemClicked(menuOpt.id)">{{menuOpt.icon}}</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </md-toolbar>
+        <div class="layout" layout="row" flex>
+            <div class="main-nav" ng-controller="MainNavController as mnc"  layout="row" ng-cloak>
+                <md-sidenav md-component-id='main-nav' md-is-locked-open="$mdMedia('gt-sm')"
+                            ng-if="mnc.authService.isUserAuthenticated()"
+                            layout="column" class="md-whiteframe-4dp">
+                    <md-list ng-click="mnc.toggleMainNav()" flex>
+                        <md-list-item ng-repeat="item in mnc.getLinks()" ui-sref="{{item.sref}}"  aria-label="{{item.title}}">
+                            <span ng-bind="item.title" aria-label="{{item.title}}" class="list-item-title"></span>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                        <md-list-item   aria-label=" ">
+                            <span aria-label=" " class="list-item-title"></span>
+                        </md-list-item>
+                        <md-list-item   aria-label=" ">
+                            <span aria-label=" " class="list-item-title"></span>
+                        </md-list-item>
+                        <md-list-item   aria-label=" ">
+                            <span aria-label=" " class="list-item-title"></span>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                        <md-list-item  aria-label="Help">
+                            <span aria-label="Help" class="list-item-title">Help</span>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                        <md-list-item ng-click="mnc.logout()" aria-label="Logout">
+                            <span aria-label="Logout" class="list-item-title">Logout</span>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-sidenav>
+            </div>
+            <md-content id="content" flex>
+                <ui-view></ui-view>
+            </md-content>
+        </div>
+
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+        <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+        <script src="node_modules/angular-material/angular-material.min.js"></script>
+        <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+        <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+
+        <script src="app.js"></script>
+        <script src="routes.js"></script>
+        <script src="config.js"></script>
+        <script src="authentication/authHttpInterceptor.js"></script>
+        <script src="common/utils.js"></script>
+        <script src="common/menuController.js"></script>
+        <script src="services/quizService.js"></script>
+        <script src="services/wipfliWayService.js"></script>
+        <script src="authentication/loginController.js"></script>
+        <script src="authentication/authService.js"></script>
+        <script src="wipfliway/wipfliWayController.js"></script>
+        <script src="wipfliway/wipfliWayReportsController.js"></script>
+        <script src="navigation/mainNavController.js"></script>
+        <script src="quiz/QuizListController.js"></script>
+    </body>
+</html>

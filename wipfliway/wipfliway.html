@@ -1,0 +1,40 @@
+<md-content  ng-controller="WipfliWayController as wwc" layout-fill>
+    <div layout="row" layout-align="center center" layout-fill>
+        <form name="wipfliWayForm" class="md-whiteframe-1dp md-padding" layout="column"
+              layout-align="center strech" flex-gt-md="80" flex-lt-md="80" flex-xs="80">
+            <div class="title" layout-align="center" layout flex>Wipfli Way</div>
+            <br/>
+            <md-input-container class="md-block">
+                <label>Your Name</label>
+                <input minlength="3" required name="sender" ng-model="wwc.appreciation.sender">
+                <div ng-messages="wipfliWayForm.sender.$error">
+                    <div ng-message="required">this is required.</div>
+                    <div ng-message="minlength">this must be more than 3 characters long.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>You are appreciating</label>
+                <input minlength="3" required name="receiver" ng-model="wwc.appreciation.receiver">
+                <div ng-messages="wipfliWayForm.receiver.$error">
+                    <div ng-message="required">this is required.</div>
+                    <div ng-message="minlength">this must be more than 3 characters long.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Reason for appreciating</label>
+                <textarea minlength="3" required name="reason"  ng-model="wwc.appreciation.reason"
+                          md-maxlength="500" rows="5" md-select-on-focus></textarea>
+                <div ng-messages="wipfliWayForm.reason.$error">
+                    <div ng-message="required">this is required.</div>
+                    <div ng-message="minlength">this must be more than 10 characters long.</div>
+                    <div ng-message="md-maxlength">this must be less than 500 characters.</div>
+                </div>
+            </md-input-container>
+            <div layout-align="end" layout flex>
+                <md-button type="submit"
+                           class="md-primary" ng-class="{'md-raised md-hue-1': wipfliWayForm.$dirty && wipfliWayForm.$valid}"
+                           ng-click="wwc.submitAppreciation();">Submit</md-button>
+            </div>
+        </form>
+    </div>
+</md-content>

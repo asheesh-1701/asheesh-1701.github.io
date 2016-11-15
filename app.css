@@ -1,0 +1,33 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+md-toolbar h3{
+    margin: auto;
+    font-weight: 500;
+}
+
+.list-item-title{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+md-input-container{
+    margin: 7px 0 !important;
+}
