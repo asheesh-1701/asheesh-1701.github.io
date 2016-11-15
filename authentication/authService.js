@@ -87,7 +87,6 @@
                 then(function(pushSubscription){
                     sub = pushSubscription;
                     saveFcmSubscription(sub);
-                    console.log(sub.endpoint.substr(sub.endpoint.lastIndexOf("/") + 1));
                     var endpoint = sub.endpoint.substr(sub.endpoint.lastIndexOf("/") + 1);
                     resource.saveFcmEndpoint({id: getLoggedUser()._id},{"fcmSubscription": endpoint});
                     console.log('Subscribed! Endpoint:', sub.endpoint);
@@ -133,22 +132,21 @@
         };
 
         var authenticate = function(username, password){
-            initFcmSubscription();
             return $q(function (resolve, reject) {
-            //    resource.login(null,{"username": username, "password": password},
-            //        function (response) {
-            //            if(response.success){
-            //                sessionStorage.setItem(loggedUser, JSON.stringify(response.user));
-            //                sessionStorage.setItem(token, response.token);
-            //                initFcmSubscription();
-            //                resolve(response);
-            //            } else {
-            //                reject(response);
-            //            }
-            //        },
-            //        function (error) {
-            //            reject(error);
-            //        });
+                resource.login(null,{"username": username, "password": password},
+                    function (response) {
+                        if(response.success){
+                            sessionStorage.setItem(loggedUser, JSON.stringify(response.user));
+                            sessionStorage.setItem(token, response.token);
+                            initFcmSubscription();
+                            resolve(response);
+                        } else {
+                            reject(response);
+                        }
+                    },
+                    function (error) {
+                        reject(error);
+                    });
             });
         };
 
