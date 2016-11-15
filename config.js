@@ -3,5 +3,5 @@
  */
 (function(){
     angular.module('ConnectApp.config', [])
-        .constant('BASE_URL', 'http://10.37.1.141:8080/')
+        .constant('BASE_URL', 'http://192.168.0.110:8080/')
 })();
